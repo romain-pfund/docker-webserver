@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM hp:7.4-apache
 
 LABEL MAINTAINER romain.pfund@rpinfo.ch
 
