@@ -10,15 +10,16 @@ RUN apt-get update --no-install-recommends -yqq && \
 	cron \
 	bzip2 \
 	wget \
-	nano
+	nano \
+	curl
  
 # Download & Install needed php extensions: ldap, imap, zlib, gd, soap
-#RUN apt-get install -y libz-dev && \
-#    curl -o zip.tgz -SL http://pecl.php.net/get/zip-1.15.1.tgz && \
-#        tar -xf zip.tgz -C /usr/src/php/ext/ && \
-#        rm zip.tgz && \
-#       	mv /usr/src/php/ext/zip-1.15.1 /usr/src/php/ext/zip && \
-#		docker-php-ext-install zip
+RUN apt-get install -y libz-dev && \
+    curl -o zip.tgz -SL http://pecl.php.net/get/zip-1.19.1.tgz && \
+        tar -xf zip.tgz -C /usr/src/php/ext/ && \
+        rm zip.tgz && \
+       	mv /usr/src/php/ext/zip-1.19.1 /usr/src/php/ext/zip && \
+		docker-php-ext-install zip
 
 RUN apt-get install --no-install-recommends -y libldap2-dev && \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
@@ -40,9 +41,9 @@ RUN apt-get install --no-install-recommends -yqq  re2c libmcrypt-dev libmcrypt4 
         mv /usr/src/php/ext/mcrypt-1.0.1 /usr/src/php/ext/mcrypt && \
 		docker-php-ext-install mcrypt
 
-RUN apt-get --no-install-recommends -yqq  install zlib1g-dev libz-dev && \
-    docker-php-ext-install zip && \
-    apt-get purge --auto-remove -y zlib1g-dev
+# RUN apt-get --no-install-recommends -yqq  install zlib1g-dev libz-dev && \
+#    docker-php-ext-install zip && \
+#    apt-get purge --auto-remove -y zlib1g-dev
 
 RUN docker-php-ext-install mysqli
 
