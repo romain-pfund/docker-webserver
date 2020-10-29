@@ -87,5 +87,5 @@ RUN composer global require phpunit/phpunit ^7.0 --no-progress --no-scripts --no
 # Enable apache mod
 RUN a2enmod rewrite expires
 
-# User right
+# User rights
 RUN usermod -u 1000 www-data
