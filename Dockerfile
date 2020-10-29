@@ -28,8 +28,7 @@ RUN apt-get install --no-install-recommends -y libldap2-dev && \
 RUN apt-get install --no-install-recommends -yqq libssl-dev libc-client2007e-dev libkrb5-dev && \
     docker-php-ext-configure imap --with-imap-ssl --with-kerberos && \
     docker-php-ext-install -j$(nproc) imap
-#
- BZ2
+#BZ2
 RUN apt-get install --no-install-recommends -yqq libbz2-dev && \
 	docker-php-ext-install -j$(nproc) bz2
 
